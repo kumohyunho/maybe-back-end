@@ -8,20 +8,6 @@ import pandas as pd
 #from .models import MyModel
 #from .models import CrawledData
 
-"""
-def index(request):
-    # 예시 데이터프레임 생성
-    data = pd.read_csv("C:/Users/samto/OneDrive/바탕 화면/대학/1-2학기/AI프로그래밍연습/WedProject/BlueArchive.csv",encoding='utf-8')
-    df = pd.DataFrame(data)
-
-    # 데이터프레임을 HTML로 변환
-    html_output = df.to_html(classes='table table-bordered table-striped', index=False)
-    context = {'html_output': html_output, 'django_variable': 'Hello from Django!'}
-    return render(request, 'index12x.html', context)
-"""
-
-
- 
 
 
 def index(request):
@@ -67,10 +53,17 @@ def SUM(request):
 
 
 
+"""
+def index(request):
+    # 예시 데이터프레임 생성
+    data = pd.read_csv("C:/Users/samto/OneDrive/바탕 화면/대학/1-2학기/AI프로그래밍연습/WedProject/BlueArchive.csv",encoding='utf-8')
+    df = pd.DataFrame(data)
 
-
-
-
+    # 데이터프레임을 HTML로 변환
+    html_output = df.to_html(classes='table table-bordered table-striped', index=False)
+    context = {'html_output': html_output, 'django_variable': 'Hello from Django!'}
+    return render(request, 'index12x.html', context)
+"""
 
 
 
