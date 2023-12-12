@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 # from django.contrib import admin
 #import os
-#import json
+import json
 #from django.http import JsonResponse
 
 import pandas as pd 
@@ -9,61 +9,76 @@ import pandas as pd
 #from .models import CrawledData
 
 
-
 def index(request):
-    # 첫 번째 HTML 파일 연결
-    return render(request, 'index_comp.html')
-
-def BA(request):
+    # 예시 데이터프레임 생성
     data = pd.read_csv("C:/Users/samto/OneDrive/바탕 화면/대학/1-2학기/AI프로그래밍연습/WedProject/BlueArchive.csv",encoding='utf-8')
-    data = data.loc[::-1].reset_index(drop=True)
+    data = pd.DataFrame(data.loc[[0],['news','summary']]) # 0행, news, summary 열만 출력
     df = pd.DataFrame(data)
 
     # 데이터프레임을 HTML로 변환
     html_output = df.to_html(classes='table table-bordered table-striped', index=False)
+    #context = {'html_output': html_output}
+    #context_json = json.dumps(context)
+    #data = json.dumps(html_output)
+    #json_data = df.to_json(orient='records')
+    
+    context = {'data': html_output}
+    
+    return render(request, 'index12x.html', context)
+
+
+
+
+ 
+
+"""
+def index(request):
+    return render(request, 'index_comp.html')
+
+def BA(request):
+    data = pd.read_csv("C:/Users/samto/OneDrive/바탕 화면/대학/1-2학기/AI프로그래밍연습/WedProject/BlueArchive.csv",encoding='utf-8')
+    data = data.loc[::-1].reset_index(drop=True) # pandas 역순 정렬
+    df = pd.DataFrame(data)
+
+    # 데이터프레임을 HTML로 변환
+    html_output = df.to_html(classes='table table-bordered table-striped', index=False) # html 코드로 변경
     context = {'html_output': html_output, 'django_variable': 'Hello from Django!'}
     return render(request, 'BA.html', context)
 
 def SUM(request): 
     data = pd.read_csv("C:/Users/samto/OneDrive/바탕 화면/대학/1-2학기/AI프로그래밍연습/WedProject/BlueArchive.csv",encoding='utf-8')
-    data = data.loc[::-1].reset_index(drop=True)
-    data = pd.DataFrame(data.loc[[0],['summary']])
+    data = data.loc[::-1].reset_index(drop=True) # pandas 역순 정렬
+    data = pd.DataFrame(data.loc[[0],['summary']]) # 0행, summary 열만 출력
+
     # 데이터프레임을 HTML로 변환
-    html_output = data.to_html(classes='table table-bordered table-striped', index=False)
+    html_output = data.to_html(classes='table table-bordered table-striped', index=False) # html 코드로 변경경
     context = {'html_output': html_output, 'django_variable': 'Hello from Django!'}
     return render(request, 'SUM.html', context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 """
-def index(request):
-    # 예시 데이터프레임 생성
-    data = pd.read_csv("C:/Users/samto/OneDrive/바탕 화면/대학/1-2학기/AI프로그래밍연습/WedProject/BlueArchive.csv",encoding='utf-8')
-    df = pd.DataFrame(data)
 
-    # 데이터프레임을 HTML로 변환
-    html_output = df.to_html(classes='table table-bordered table-striped', index=False)
-    context = {'html_output': html_output, 'django_variable': 'Hello from Django!'}
-    return render(request, 'index12x.html', context)
-"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
